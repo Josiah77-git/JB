@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+        }
+
+        .header {
+            background-color: #15763d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav {
+            width: 200px;
+            background-color: #15763d;
+            padding: 20px;
+            height: 100vh; /* Full height */
+            position: fixed; /* Fixed position */
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 220px; /* Space for the navigation */
+            padding: 20px;
+            width: calc(100% - 220px);
+        }
+
+        .financials-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .input-field {
+            margin-bottom: 15px;
+        }
+
+        .input-field input,
+        .input-field select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #218838;
+        }
+
+        .output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .output h3 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+   
+
+    <div class="nav">
+        <h3>Francis Gitau</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Message</a>
+        <a href="contactshtml.html">Contact Us</a>
+    </div>
+
+    <div class="content">
+        <div class="financials-container">
+            <h2>Financials</h2>
+            <form id="financials-form">
+                <div class="input-field">
+                    <label for="date-paid">Date Paid:</label>
+                    <input type="date" id="date-paid" required>
+                </div>
+                <div class="input-field">
+                    <label for="credit">Credit (KES):</label>
+                    <input type="number" id="credit" placeholder="Enter credit amount" required>
+                </div>
+                <div class="input-field">
+                    <label for="debit">Debit (KES):</label>
+                    <input type="number" id="debit" placeholder="Enter debit amount" required>
+                </div>
+                <div class="input-field">
+                    <label for="payment-mode">Mode of Payment:</label>
+                    <select id="payment-mode" required>
+                        <option value="" disabled selected>Select Payment Mode</option>
+                        <option value="M-Pesa">M-Pesa</option>
+                        <option value="Cheque">Cheque</ option>
+                        <option value="Bank">Bank</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+
+            <div class="output" id="output-section" style="display: none;">
+                <h3>Payment Details</h3>
+                <p><strong>Date Paid:</strong> <span id="output-date"></span></p>
+                <p><strong>Credit:</strong> KES <span id="output-credit"></span></p>
+                <p><strong>Debit:</strong> KES <span id="output-debit"></span></p>
+                <p><strong>Balance:</strong> KES <span id="output-balance"></span></p>
+                <p><strong>Mode of Payment:</strong> <span id="output-mode"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Kabete National Polytechnic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('financials-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const datePaid = document.getElementById('date-paid').value;
+            const credit = parseFloat(document.getElementById('credit').value) || 0;
+            const debit = parseFloat(document.getElementById('debit').value) || 0;
+            const paymentMode = document.getElementById('payment-mode').value;
+
+            // Calculate balance
+            const balance = credit - debit;
+
+            // Display output
+            document.getElementById('output-date').textContent = datePaid;
+            document.getElementById('output-credit').textContent = credit.toFixed(2);
+            document.getElementById('output-debit').textContent = debit.toFixed(2);
+            document.getElementById('output-balance').textContent = balance.toFixed(2);
+            document.getElementById('output-mode').textContent = paymentMode;
+
+            // Show the output section
+            document.getElementById('output-section').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

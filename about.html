@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+        }
+
+        .header {
+            background-color: #ff7300;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav {
+            width: 200px;
+            background-color: #15763d;
+            padding: 20px;
+            height: 100vh; /* Full height */
+            position: fixed; /* Fixed position */
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 220px; /* Space for the navigation */
+            padding: 20px;
+            width: calc(100% - 220px);
+            margin-top: auto;
+            max-width: 800px;
+            margin-left: 20%;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .facility, .vacancies {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin: auto;
+        }
+
+        .apply-button {
+            background-color: #15763d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .apply-button:hover {
+            background-color: #15763d;
+        }
+
+        /* Popup styles */
+        .popup {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it is above other content */
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%; /* Responsive width */
+            max-width: 600px; /* Maximum width */
+            text-align: left;
+            overflow-y: auto; /* Allow scrolling if content is too long */
+            max-height: 80%; /* Limit height */
+        }
+
+        .close-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close-button:hover {
+            background-color: #c82333;
+        }
+
+        .input-field {
+            margin-bottom: 10px;
+        }
+
+        .input-field input, .input-field textarea, .input-field select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .input-field label {
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h3>=</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Message</a>
+        <a href="contactshtml.html">Contact Us</a>
+    </div>
+
+    <div class="content">
+        <h2>About J B SCHOOL</h2>
+        <p>J B School is a premier institution offering a variety of courses aimed at equipping students with practical skills and knowledge for the job market. Our mission is to provide quality education and training that meets the needs of the community and industry.</p>
+        
+        <div class="facility">
+            <h3>Facilities</h3>
+            <p>We have state-of-the-art facilities including modern classrooms, laboratories, and workshops to enhance the learning experience.</p>
+        </div>
+
+        <div class="vacancies">
+            <h3>Current Vacancies</h3>
+            <p>We are currently accepting applications for various programs. Click the button below to apply online.</p>
+            <button class="apply-button" id="job-apply-button">Apply for Job Vacancies</button>
+        </div>
+    </div>
+
+    <!-- Popup for job application form -->
+    <div class="popup" id="application-popup">
+        <div class="popup-content">
+            <h2>Job Application Form</h2>
+            <form id="application-form">
+                <div class="input-field">
+                    <label for="job-select">Select Job:</label>
+                    <select id="job-select" required>
+                        <option value="">--Select a Job--</option>
+                        <option value="job1">Lecturer</option>
+                        <option value="job2">Accountant</option>
+                        <option value="job3">Driver</option>
+                        <option value="job4">Secretary</option>
+                    </select>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-surname">Surname:</label>
+                    <input type="text" id="applicant-surname" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-firstname">First Name:</label>
+                    <input type="text" id="applicant-firstname" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-lastname">Last Name:</label>
+                    <input type="text" id="applicant-lastname" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-id">National ID Number:</label>
+                    <input type="text" id="applicant-id" pattern="\d{8,9}" title="Must be 8 or 9 numerical characters" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-address">Physical Address:</label>
+                    <input type="text" id="applicant-address" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-constituency">Constituency:</label>
+                    <input type="text" id="applicant-constituency" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-county">County:</label>
+                    <input type="text" id="applicant-county" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-nationality">Nationality:</label>
+                    <input type="text" id="applicant-nationality" required>
+                </div>
+                <div class="input-field">
+                    <label for="applicant-cv">Upload CV:</label>
+                    <input type="file" id="applicant-cv" accept=".pdf,.doc,.docx" required>
+                </div>
+                <button type="submit" class="apply-button">Submit Application</button>
+                <button type="button" class="close-button" id="close-popup">Close</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const jobApplyButton = document.getElementById('job-apply-button');
+        const applicationPopup = document.getElementById('application-popup');
+        const closePopup = document.getElementById('close-popup');
+        const applicationForm = document.getElementById('application-form');
+
+        jobApplyButton.addEventListener('click', function() {
+            applicationPopup.style.display = 'flex'; // Show the popup
+        });
+
+        closePopup.addEventListener('click', function() {
+            applicationPopup.style.display = 'none'; // Hide the popup
+        });
+
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const jobTitle = document.getElementById('job-select'). value;
+            const surname = document.getElementById('applicant-surname').value;
+            const firstName = document.getElementById('applicant-firstname').value;
+            const lastName = document.getElementById('applicant-lastname').value;
+            const nationalId = document.getElementById('applicant-id').value;
+            const address = document.getElementById('applicant-address').value;
+            const constituency = document.getElementById('applicant-constituency').value;
+            const county = document.getElementById('applicant-county').value;
+            const nationality = document.getElementById('applicant-nationality').value;
+
+            // Generate interview details
+            const currentDate = new Date();
+            const interviewDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000); // 1 week later
+            const interviewDetails = `
+                Job Title: ${jobTitle}
+                Interview Date: ${interviewDate.toLocaleDateString()}
+                Interview Time: ${interviewDate.toLocaleTimeString()}
+                Applicant Details:
+                Surname: ${surname}
+                First Name: ${firstName}
+                Last Name: ${lastName}
+                National ID: ${nationalId}
+                Address: ${address}
+                Constituency: ${constituency}
+                County: ${county}
+                Nationality: ${nationality}
+            `;
+
+            // Create a downloadable document
+            const blob = new Blob([interviewDetails], { type: 'js.pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Interview_Details.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            alert('Application submitted successfully! You can download your interview details now.');
+            applicationPopup.style.display = 'none'; // Hide the popup after submission
+            applicationForm.reset(); // Reset the form fields
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+        }
+
+        .header {
+            background-color: #15763d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav {
+            width: 200px;
+            background-color: #15763d;
+            padding: 20px;
+            height: 100vh; /* Full height */
+            position: fixed; /* Fixed position */
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 220px; /* Space for the navigation */
+            padding: 20px;
+            width: calc(100% - 220px);
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .contact-form {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .contact-form button {
+            background-color: #15763d;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: bottom;
+            padding: 2px;
+            background-color: #f4f7f5;
+            color: white;
+            position: bottom;
+            bottom: 90%;
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav">
+        <h3>Francis Gitau</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Message</a>
+        <a href="contactshtml.html">Contact Us</a>
+    </div>
+
+    <div class="content">
+        <h2>Let us know your feedback</h2>
+        <div class="contact-form">
+            <form action="submit_contact.php" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

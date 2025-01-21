@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+        }
+
+        .header {
+            background-color: #11e82e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav {
+            width: 200px;
+            background-color: #15763d;
+            padding: 20px;
+            height: 100vh; /* Full height */
+            position: fixed; /* Fixed position */
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 220px; /* Space for the navigation */
+            padding: 20px;
+            width: calc(100% - 220px);
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .course {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .course button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .course button:hover {
+            background-color: #218838;
+        }
+
+        .details {
+            display: none;
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+   
+
+    <div class="nav">
+        <h3>Francis Gitau</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Message</a>
+        <a href="contactshtml.html">Contact Us</a>
+    </div>
+
+    <div class="content">
+        <h2>Available Courses</h2>
+        <div class="course">
+            <h3>Data Science</h3>
+            <button onclick="showDetails('dataScience')">View Details</button>
+            <div class="details" id="dataScience">
+                <p><strong>Requirements:</strong> Basic knowledge of programming and statistics.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 100,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Cybersecurity</h3>
+            <button onclick="showDetails('cybersecurity')">View Details</button>
+            <div class="details" id="cybersecurity">
+                <p><strong>Requirements:</strong> Basic IT knowledge.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 120,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Web Development</h3>
+            <button onclick="showDetails('webDevelopment')">View Details</button <div class="details" id="webDevelopment">
+                <p><strong>Requirements:</strong> Basic understanding of HTML, CSS, and JavaScript.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 90,000</p>
+            </div>
+        </div>
+        <!-- Additional courses can be added in a similar manner -->
+        <div class="course">
+            <h3>Machine Learning</h3>
+            <button onclick="showDetails('machineLearning')">View Details</button>
+            <div class="details" id="machineLearning">
+                <p><strong>Requirements:</strong> Knowledge of Python and statistics.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 110,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Mobile App Development</h3>
+            <button onclick="showDetails('mobileAppDevelopment')">View Details</button>
+            <div class="details" id="mobileAppDevelopment">
+                <p><strong>Requirements:</strong> Basic programming skills.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 95,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Cloud Computing</h3>
+            <button onclick="showDetails('cloudComputing')">View Details</button>
+            <div class="details" id="cloudComputing">
+                <p><strong>Requirements:</strong> Basic IT knowledge.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 105,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Data Analytics</h3>
+            <button onclick="showDetails('dataAnalytics')">View Details</button>
+            <div class="details" id="dataAnalytics">
+                <p><strong>Requirements:</strong> Knowledge of Excel and statistics.</p>
+                <p><strong>Duration:</strong> 1 year</p>
+                <p><strong>Total Fees:</strong> Ksh 80,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Digital Marketing</h3>
+            <button onclick="showDetails('digitalMarketing')">View Details</button>
+            <div class="details" id="digitalMarketing">
+                <p><strong>Requirements:</strong> Basic understanding of marketing principles.</p>
+                <p><strong>Duration:</strong> 1 year</p>
+                <p><strong>Total Fees:</strong> Ksh 70,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Graphic Design</h3>
+            <button onclick="showDetails('graphicDesign')">View Details</button>
+            <div class="details" id="graphicDesign">
+                <p><strong>Requirements:</strong> Creativity and basic design skills.</p>
+                <p><strong>Duration:</strong> 1 year</p>
+                <p><strong>Total Fees:</strong> Ksh 75,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Artificial Intelligence</h3>
+            <button onclick="showDetails('artificialIntelligence')">View Details</button>
+            <div class="details" id="artificialIntelligence">
+                <p><strong>Requirements:</strong> Knowledge of programming and algorithms.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 130,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Blockchain Technology</h3>
+            <button onclick="showDetails('blockchainTechnology')">View Details</button>
+            <div class="details" id="blockchainTechnology">
+                <p><strong>Requirements:</strong> Basic IT knowledge.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 115,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Network Administration</h3>
+            <button onclick="showDetails('networkAdministration')">View Details</button>
+ <div class="details" id="networkAdministration">
+                <p><strong>Requirements:</strong> Basic understanding of networking concepts.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 100,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Software Engineering</h3>
+            <button onclick="showDetails('softwareEngineering')">View Details</button>
+            <div class="details" id="softwareEngineering">
+                <p><strong>Requirements:</strong> Knowledge of programming languages.</p>
+                <p><strong>Duration:</strong> 3 years</p>
+                <p><strong>Total Fees:</strong> Ksh 150,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Information Technology</h3>
+            <button onclick="showDetails('informationTechnology')">View Details</button>
+            <div class="details" id="informationTechnology">
+                <p><strong>Requirements:</strong> Basic IT skills.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 90,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Database Management</h3>
+            <button onclick="showDetails('databaseManagement')">View Details</button>
+            <div class="details" id="databaseManagement">
+                <p><strong>Requirements:</strong> Basic understanding of databases.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 85,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Game Development</h3>
+            <button onclick="showDetails('gameDevelopment')">View Details</button>
+            <div class="details" id="gameDevelopment">
+                <p><strong>Requirements:</strong> Basic programming skills.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 120,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Virtual Reality</h3>
+            <button onclick="showDetails('virtualReality')">View Details</button>
+            <div class="details" id="virtualReality">
+                <p><strong>Requirements:</strong> Basic understanding of programming.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 110,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Robotics</h3>
+            <button onclick="showDetails('robotics')">View Details</button>
+            <div class="details" id="robotics">
+                <p><strong>Requirements:</strong> Basic knowledge of electronics.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 130,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Ethical Hacking</h3>
+            <button onclick="showDetails('ethicalHacking')">View Details</button>
+            <div class="details" id="ethicalHacking">
+                <p><strong>Requirements:</strong> Basic IT knowledge.</p>
+                <p><strong>Duration:</strong> 1 year</p>
+                <p><strong>Total Fees:</strong> Ksh 95,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>UI/UX Design</h3>
+            <button onclick="showDetails('uiUxDesign')">View Details</button>
+            <div class="details" id="uiUxDesign">
+                <p><strong>Requirements:</strong> Creativity and design skills.</p>
+                <p><strong>Duration:</strong> 1 year</p>
+                <p><strong>Total Fees:</strong> Ksh 80,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Project Management</h3>
+            <button onclick="showDetails('projectManagement')">View Details</button>
+            <div class="details" id="projectManagement">
+                <p><strong>Requirements:</strong> Basic understanding of management principles </p>
+                <p><strong>Duration:</strong> 1 year</p>
+                <p><strong>Total Fees:</strong> Ksh 70,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Business Analysis</h3>
+            <button onclick="showDetails('businessAnalysis')">View Details</button>
+            <div class="details" id="businessAnalysis">
+                <p><strong>Requirements:</strong> Basic understanding of business concepts.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 85,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Supply Chain Management</h3>
+            <button onclick="showDetails('supplyChainManagement')">View Details</button>
+            <div class="details" id="supplyChainManagement">
+                <p><strong>Requirements:</strong> Basic understanding of logistics.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 90,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Human Resource Management</h3>
+            <button onclick="showDetails('humanResourceManagement')">View Details</button>
+            <div class="details" id="humanResourceManagement">
+                <p><strong>Requirements:</strong> Basic understanding of HR principles.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 80,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Environmental Science</h3>
+            <button onclick="showDetails('environmentalScience')">View Details</button>
+            <div class="details" id="environmentalScience">
+                <p><strong>Requirements:</strong> Basic understanding of science.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 100,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Hospitality Management</h3>
+            <button onclick="showDetails('hospitalityManagement')">View Details</button>
+            <div class="details" id="hospitalityManagement">
+                <p><strong>Requirements:</strong> Basic understanding of hospitality principles.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 95,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Fashion Design</h3>
+            <button onclick="showDetails('fashionDesign')">View Details</button>
+            <div class="details" id="fashionDesign">
+                <p><strong>Requirements:</strong> Creativity and design skills.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 85,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Interior Design</h3>
+            <button onclick="showDetails('interiorDesign')">View Details</button>
+            <div class="details" id="interiorDesign">
+                <p><strong>Requirements:</strong> Creativity and design skills.</p>
+                <p><strong>Duration:</strong> 1.5 years</p>
+                <p><strong>Total Fees:</strong> Ksh 90,000</p>
+            </div>
+        </div>
+        <div class="course">
+            <h3>Performing Arts</h3>
+            <button onclick="showDetails('performingArts')">View Details</button>
+            <div class="details" id="performingArts">
+                <p><strong>Requirements:</strong> Passion for performing arts.</p>
+                <p><strong>Duration:</strong> 2 years</p>
+                <p><strong>Total Fees:</strong> Ksh 80,000</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Kabete National Polytechnic. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showDetails(courseId) {
+            const details = document.querySelectorAll('.details');
+            details.forEach(detail => {
+                if (detail.id === courseId) {
+                    detail.style.display = detail.style.display === 'block' ? 'none' : 'block';
+                } else {
+                    detail.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

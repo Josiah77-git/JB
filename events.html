@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Calendar - Kabete National Polytechnic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            background-color: #15763d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .nav {
+            width: 200px;
+            background-color: #15763d;
+            padding: 20px;
+            height: 100vh; /* Full height */
+            position: fixed; /* Fixed position */
+            margin-left: 0%;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+           
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .day {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .day-header {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 0;
+            border-radius: 4px;
+        }
+
+        .event-list {
+            margin-top: 20px;
+            width: 90%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .event {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            background-color: #e7f1ff;
+        }
+
+        .event h4 {
+            margin: 0;
+            color: #007bff;
+        }
+
+        .event p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Event Calendar</h1>
+    </div>
+    <div class="nav">
+        <h3>Francis Gitau</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Message</a>
+        <a href="contactshtml.html">Contact Us</a>
+        
+    </div>
+    <div class="calendar">
+        <div class="day-header">Sun</div>
+        <div class="day-header">Mon</div>
+        <div class="day-header">Tue</div>
+        <div class="day-header">Wed</div>
+        <div class="day-header">Thu</div>
+        <div class="day-header">Fri</div>
+        <div class="day-header">Sat</div>
+        
+
+        <!-- Days of the month (example for a month with 30 days) -->
+        <div class="day">1</div>
+        <div class="day">2</div>
+        <div class="day">3</div>
+        <div class="day">4</div>
+        <div class="day">5</div>
+        <div class="day">6</div>
+        <div class="day">7</div>
+        <div class="day">8</div>
+        <div class="day">9</div>
+        <div class="day">10</div>
+        <div class="day">11</div>
+        <div class="day">12</div>
+        <div class="day">13</div>
+        <div class="day">14</div>
+        <div class="day">15</div>
+        <div class="day">16</div>
+        <div class="day">17</div>
+        <div class="day">18</div>
+        <div class="day">19</div>
+        <div class="day">20</div>
+        <div class="day">21</div>
+        <div class="day">22</div>
+        <div class="day">23</div>
+        <div class="day">24</div>
+        <div class="day">25</div>
+        <div class="day">26</div>
+        <div class="day">27</div>
+        <div class="day">28</div>
+        <div class="day">29</div>
+        <div class="day">30</div>
+    </div  class="event-list">
+        <h2>Upcoming Events</h2>
+        <div class="event">
+            <h4>Event Title 1</h4>
+            <p>Date: 2023-10-15</p>
+            <p>Description: Description of event 1.</p>
+        </div>
+        <div class="event">
+            <h4>Event Title 2</h4>
+            <p>Date: 2023-10-20</p>
+            <p>Description: Description of event 2.</p>
+        </div>
+        <div class="event">
+            <h4>Event Title 3</h4>
+            <p>Date: 2023-10-25</p>
+            <p>Description: Description of event 3.</p>
+        </div>
+    </div>
+</body>
+</html> 
+    </div>
+</body>
+</html>

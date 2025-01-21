@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+        }
+
+        .header {
+            background-color: #15763d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .nav {
+            width: 200px;
+            background-color: #15763d;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #0056b3;
+        }
+
+        .content {
+            margin-left: 220px; /* Space for the navigation */
+            padding: 20px;
+            width: calc(100% - 220px);
+        }
+
+        .admissions-container {
+            background-color: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .admissions-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            margin-bottom: 15px;
+        }
+
+        .input-field input, .input-field select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .generate-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .generate-button:hover {
+            background-color: #218838;
+        }
+
+        .admission-number {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #fcfcfd;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+   
+
+    <div class="nav">
+        <h3>Francis Gitau</h3>
+        <div class="sidebar">
+            <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Message</a>
+        <a href="contactshtml.html">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="admissions-container">
+            <h2>Admissions Process</h2>
+            <form id="admissions-form">
+                <div class="input-field">
+                    <input type="number" id="index-number" placeholder="High School Index Number" required>
+                </div>
+                <div class="input-field">
+                    <input type="number" id="completion-year" placeholder="Year of High School Completion" required>
+                </div>
+                <div class="input-field">
+                    <select id="course" required>
+                        <option value="" disabled selected>--Select Course--</option>
+                        <option value="ICT">ICT</option>
+                        <option value="BAN">Business Administration</option>
+                        <option value="ENG">Automotive Engineering</option>
+                        <option value="ARS">Arts</option>
+                        <option value="HOS">Hospitality</option>
+                        <option value="MMA">Mass Media</option>
+                        <option value="AEN">Agricultural Engineering</option>
+                        <option value="DSC">Data Science</option>
+                        <option value="DTA">Data Analytics</option>
+                    </select>
+                </div>
+                <div class="input-field">
+ <select id="level" required>
+                        <option value="" disabled selected>--Select Level--</option>
+                        <option value="600">Masters</option>
+                        <option value="500">Degree</option>
+                        <option value="400">Diploma</option>
+                        <option value="300">Certificate</option>
+                    </select>
+                </div>
+                <button type="submit" class="generate-button">Generate Admission Number</button>
+            </form>
+            <div class="admission-number" id="admission-number"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Kabete National Polytechnic. All rights reserved.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('admissions-form');
+        const admissionNumberDisplay = document.getElementById('admission-number');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const indexNumber = document.getElementById('index-number').value;
+            const completionYear = document.getElementById('completion-year').value;
+            const course = document.getElementById('course').value;
+            const level = document.getElementById('level').value;
+            const monthYear = new Date().toLocaleString('default', { month: 'short', year: 'numeric' }).replace(' ', '').slice(0, 1) + (new Date().getFullYear().toString().slice(-2));
+            const serialNumber = String(Math.floor(Math.random() * 1000)).padStart(3, '0'); // Random serial number padded to 3 digits
+
+            const admissionNumber = `${course}/${level}/${monthYear}/${serialNumber}`;
+            admissionNumberDisplay.textContent = `Your Admission Number: ${admissionNumber}`;
+        });
+    </script>
+</body>
+</html>
