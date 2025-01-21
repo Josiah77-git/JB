@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - J B Schools</title>
+    <title>Login - Kabete National Polytechnic</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,12 +26,10 @@
         .login-container h2 {
             text-align: center;
             margin-bottom: 20px;
-          
         }
 
         .input-field {
             margin-bottom: 15px;
-            width: 300px;
         }
 
         .input-field input {
@@ -42,7 +40,7 @@
         }
 
         .login-button {
-            width: 90%;
+            width: 100%;
             padding: 10px;
             background-color: #15763d;
             color: white;
@@ -72,10 +70,10 @@
                 <input type="text" id="username" placeholder="Enter Your Names" required>
             </div>
             <div class="input-field">
-                <input type="text" id="admission-number" placeholder="Admin Number" required>
+                <input type="text" id="admission-number" placeholder="Admin Number (uppercase)" required>
             </div>
             <div class="input-field">
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="password" placeholder="Password (lowercase of Admin Number)" required>
             </div>
             <button type="submit" class="login-button">Login</button>
         </form>
@@ -88,18 +86,20 @@
         form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const username = document.getElementById('username').value;
-            const admissionNumber = document.getElementById('admission-number').value;
-            const password = document.getElementById('password').value;
+            const username = document.getElementById('username').value.trim();
+            const admissionNumber = document.getElementById('admission-number').value.trim();
+            const password = document.getElementById('password').value.trim();
 
-            // Validate admission number and password
             if (admissionNumber === admissionNumber.toUpperCase() && password === admissionNumber.toLowerCase()) {
                 // Redirect to the dashboard
-                window.location.href = 'index.html'; // Change this to your dashboard page
+                window.location.href = 'index.html';
             } else {
-                // Show error message
                 errorMessage.style.display = 'block';
             }
+        });
+
+        form.addEventListener('input', () => {
+            errorMessage.style.display = 'none'; // Hide error message on input
         });
     </script>
 </body>
