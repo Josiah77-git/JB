@@ -49,7 +49,7 @@
             width: calc(100% - 220px);
             margin-top: auto;
             max-width: 800px;
-            
+            margin-left: 20%;
         }
 
         h2 {
@@ -138,14 +138,14 @@
 </head>
 <body>
     <div class="nav">
-        <h3>J B Writes</h3>
+        <h3>=</h3>
         <a href="index.html">Dashboard</a>
         <a href="about.html">About Us</a>
         <a href="courses.html">Our Courses</a>
         <a href="admission.html">Admission</a>
         <a href="financials.html">Financials</a>
         <a href="events.html">Events</a>
-        <a href="news.html">Latest News</a>
+        <a href="news.html">Message</a>
         <a href="contactshtml.html">Contact Us</a>
     </div>
 
@@ -173,8 +173,8 @@
                 <div class="input-field">
                     <label for="job-select">Select Job:</label>
                     <select id="job-select" required>
-                        <option value="">--Select a Job--</option>
-                        <option value="job1">Lecturer</option>
+                        <option value="">--Select Occupation--</option>
+                        <option value="Lecturer">Lecturer</option>
                         <option value="job2">Accountant</option>
                         <option value="job3">Driver</option>
                         <option value="job4">Secretary</option>
@@ -209,15 +209,19 @@
                     <input type="text" id="applicant-county" required>
                 </div>
                 <div class="input-field">
-                    <label for="applicant-nationality">Nationality:</label>
-                    <input type="text" id="applicant-nationality" required>
+                    <label for="nationality">Nationality:</label>
+                    <select id="nationality" required>
+                        <option value="">--Select Nationality--</option>
+                        <option value="nation1">Kenyan</option>
+                        <option value="nation2">Foreigner</option>
+                    </select>
                 </div>
                 <div class="input-field">
                     <label for="applicant-cv">Upload CV:</label>
                     <input type="file" id="applicant-cv" accept=".pdf,.doc,.docx" required>
                 </div>
                 <button type="submit" class="apply-button">Submit Application</button>
-                <button type="button" class="close-button" id="close-popup">Close</button>
+                <button type="button" class="close-button" id="close-popup">Cancel</button>
             </form>
         </div>
     </div>
@@ -256,9 +260,7 @@
                 Interview Date: ${interviewDate.toLocaleDateString()}
                 Interview Time: ${interviewDate.toLocaleTimeString()}
                 Applicant Details:
-                Surname: ${surname}
-                First Name: ${firstName}
-                Last Name: ${lastName}
+                Surname: ${surname} ${firstName} ${lastName}
                 National ID: ${nationalId}
                 Address: ${address}
                 Constituency: ${constituency}
@@ -271,7 +273,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'Interview_Details.txt';
+            a.download = 'Interview_Details.pdf';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
