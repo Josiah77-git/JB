@@ -3,25 +3,25 @@
     "short_name": "J B Academy APP",
     "icons": [
         {
-            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg",  // Use relative paths for web compatibility
+            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg",  
             "sizes": "192x192",
-            "type": "image/png",
+            "type": "image/jpg",
             "purpose": "any maskable"
         },
         {
-            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg",  // Use relative paths for web compatibility
+            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg", 
             "sizes": "384x384",
-            "type": "image/png"
+            "type": "image/jpg"
         },
         {
-            "src": "./assets/icon-512.png",
+            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/jpg"
         }
     ],
     "theme_color": "#FFFFFF",
     "background_color": "#FFFFFF",
-    "start_url": "./index.html",  // Ensure this points to the correct entry point of your app
+    "start_url": "./index.html", 
     "display": "standalone",
-    "orientation": "portrait"  // Corrected spelling from "orientaton" to "orientation"
+    "orientation": "portrait"  
 }
