@@ -3,13 +3,13 @@
     "short_name": "J B Academy APP",
     "icons": [
         {
-            "src": "./assets/J_B_Academy.jpeg",  // Use relative paths for web compatibility
+            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg",  // Use relative paths for web compatibility
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "./assets/J_B_Academy.jpeg",  // Use relative paths for web compatibility
+            "src": "Premium Photo _ Top view of workspace with agenda and laptop - Copy.jpg",  // Use relative paths for web compatibility
             "sizes": "384x384",
             "type": "image/png"
         },
