@@ -3,18 +3,18 @@
     "short_name": "J B Academy",
     "icons": [
         {
-            "src": "./assets/icon-192.png",
+            "src": ".icon.jpg",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "any maskable"
         },
         {
-            "src": "./assets/icon-384.png",
+            "src": ".icon.jpg",
             "sizes": "384x384",
             "type": "image/png"
         },
         {
-            "src": "./assets/icon-512.png",
+            "src": "icon.jpg",
             "sizes": "512x512",
             "type": "image/png"
         }
@@ -24,6 +24,6 @@
     "start_url": "./index.html",  
     "display": "standalone",  
     "orientation": "portrait", 
-    "description": "Official website of Kabete National Polytechnic, providing information on courses, events, and admissions.",
+    "description": "Official website of J B Academy, providing information on courses, events, admissions and many more.",
     "lang": "en" 
 }
