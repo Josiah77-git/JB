@@ -1,0 +1,28 @@
+
+{
+    "name": "J B Academy",
+    "short_name": "J B Academy APP",
+    "icons": [
+        {
+        "src": "C:\Users\J B Waithaka\Downloads\J B Academy.jpeg",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+        },
+        {
+            "src": "C:\Users\J B Waithaka\Downloads\J B Academy.jpeg",
+            "sizes": "384x384",
+            "type": "image/png"  
+        },
+        {
+            "src": "./assets/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"  
+        }
+    ],
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
+    "start_url": "../j-b-academy/",
+    "display": "standalone",
+    "orientaton": "potrait"
+}
