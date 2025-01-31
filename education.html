@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Details - Kabete National Polytechnic</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/dexie/dist/dexie.js"></script>
+    <script src="educational_details.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Kabete National Polytechnic</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="event_page.html">Events</a>
+            <a href="download.html">Download</a>
+            <a href="educational_details.html">Educational Details</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Manage Educational Details</h2>
+        <form id="itemForm">
+            <label for="dateInput">Date:</label>
+            <input type="date" id="dateInput" required>
+
+            <label for="courseInput">Course Chosen:</label>
+            <input type="text" id="courseInput" required>
+
+            <label for="admissionNumberInput">Admission Number:</label>
+            <input type="text" id="admissionNumberInput" required>
+
+            <button type="submit">Add Educational Detail</button>
+        </form>
+
+        <div id="itemsDiv"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Kabete National Polytechnic. All rights reserved.</p>
+    </footer>
+</body>
+</html>
