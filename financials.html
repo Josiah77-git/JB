@@ -180,7 +180,7 @@
                 <button type="submit" class="submit-button">Submit</button>
             </form>
 
-            <div class="output" id=" output-section" style="display: none;">
+            <div class="output" id="output-section" style="display: none;">
                 <h2> J B Schools Academy</h2>
                 <h3>Payment Details</h3>
                 <p><strong>Date Paid:</strong> <span id="output-date"></span></p>
@@ -224,7 +224,6 @@
         }
 
         function printReceipt() {
-            const name = document.getElementById('name').value;
             const printContent = `
                 <html>
                 <head>
@@ -236,7 +235,7 @@
                     </style>
                 </head>
                 <body>
-                    <h2>Receipt</h2>
+                    <h2>Payment History</h2>
                     <table>
                         <tr>
                             <th>Name</th>
