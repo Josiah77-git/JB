@@ -301,13 +301,14 @@
             let confirmationMessage;
 
             if (balance <= 0) {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${formatNumber} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
             } else {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${formatNumber} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
             }
 
             // Store payment details in history
             paymentHistory.push({
+                confirmationCode: confirmationCode,
                 name: name,
                 datePaid: datePaid.toLocaleDateString(),
                 credit: creditFormatted,
