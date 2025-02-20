@@ -139,7 +139,7 @@
                     <label for="debit">Debit (KES):</label>
                     <input type="number" id="debit" placeholder="Enter debit amount" required>
                 </div>
-                <div class <div class="input-field">
+                <div class="input-field">
                     <label for="payment-mode">Mode of Payment:</label>
                     <select id="payment-mode" required>
                         <option value="" disabled selected>Select Payment Mode</option>
@@ -195,16 +195,32 @@
             return 'Number too large';
         }
 
+        function getRandomTime(date) {
+            const randomMinutes = Math.floor(Math.random() * 60); // Random minutes
+            const randomHours = Math.floor(Math.random() * 24); // Random hours
+            const randomDate = new Date(date);
+            randomDate.setHours(randomDate.getHours() - randomHours);
+            randomDate.setMinutes(randomDate.getMinutes() - randomMinutes);
+            return randomDate;
+        }
+
         document.getElementById('financials-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
 
             const name = document.getElementById('name').value;
             const admissionNumber = document.getElementById('admission-number').value;
             const phoneNumber = document.getElementById('phone-number').value;
-            const datePaid = document.getElementById('date-paid').value;
+            const datePaid = new Date(document.getElementById('date-paid').value);
             const credit = parseFloat(document.getElementById('credit').value) || 0;
             const debit = parseFloat(document.getElementById('debit').value) || 0;
             const paymentMode = document.getElementById('payment-mode').value;
+
+            // Ensure the date is not beyond the current date
+            const currentDate = new Date();
+            if (datePaid > currentDate) {
+                alert("The date paid cannot be in the future.");
+                return;
+            }
 
             // Calculate balance
             const balance = credit - debit;
@@ -212,18 +228,23 @@
             // Generate confirmation code
             const confirmationCode = generateRandomString(9);
 
+            // Get random time backwards
+            const randomDate = getRandomTime(datePaid);
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12 : false };
+            const formattedRandomDate = randomDate.toLocaleString('en-US', options);
+
             // Construct confirmation message
             const creditFormatted = formatNumber(credit);
             const creditInWords = numberToWords(credit);
             const balanceFormatted = formatNumber(balance);
-            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} (${creditInWords} Ksh) has been deposited in favor of ${name} of Admin No: ${admissionNumber}. The new balance is ${balanceFormatted} Ksh. Payment made on ${datePaid} ${time} via ${paymentMode}. Ensure you clear the balance by mid term. Nice moments!`;
+            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} (${creditInWords} Ksh) has been deposited in favor of ${name} (Admin No: ${admissionNumber}). The new balance is ${balanceFormatted} Ksh. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you clear the balance by mid term. Nice moments!`;
 
             // Display output
-            document.getElementById('output-date').textContent = datePaid;
+            document.getElementById('output-date').textContent = datePaid.toLocaleDateString();
             document.getElementById('output-credit').textContent = creditFormatted;
             document.getElementById('output-debit').textContent = formatNumber(debit);
             document.getElementById('output-balance').textContent = balanceFormatted;
- document.getElementById('output-mode').textContent = paymentMode;
+            document.getElementById('output-mode').textContent = paymentMode;
             document.getElementById('confirmation-message').textContent = confirmationMessage;
 
             // Show the output section
