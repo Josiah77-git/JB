@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
-    <title>Our Financials - J B Academy</title>
-     <link rel="stylesheet" href="styles.css">
+    <title>Our Financials - J B Schools Academy</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="icon.jpg">
     <link rel="manifest" href="manifest.json">
     <style>
@@ -102,7 +101,7 @@
 </head>
 <body>
     <div class="nav">
-        <h3>J B Writes</h3>
+        <h3>J B Schools</h3>
         <a href="index.html">Dashboard</a>
         <a href="about.html">About Us</a>
         <a href="courses.html">Our Courses</a>
@@ -110,12 +109,24 @@
         <a href="financials.html">Financials</a>
         <a href="events.html">Events</a>
         <a href="news.html">Latest News</a>
-        <a href="contactshtml.html">Contact Us</a>
+        <a href="contacts.html">Contact Us</a>
     </div>
-       <div class="content">
+    <div class="content">
         <div class="financials-container">
             <h2>Financials</h2>
             <form id="financials-form">
+                <div class="input-field">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-field">
+                    <label for="admission-number">Admission Number:</label>
+                    <input type="text" id="admission-number" placeholder="Enter admission number" required>
+                </div>
+                <div class="input-field">
+                    <label for="phone-number">Phone Number:</label>
+                    <input type="tel" id="phone-number" placeholder="Enter valid phone number" required>
+                </div>
                 <div class="input-field">
                     <label for="date-paid">Date Paid:</label>
                     <input type="date" id="date-paid" required>
@@ -125,7 +136,7 @@
                     <input type="number" id="credit" placeholder="Enter credit amount" required>
                 </div>
                 <div class="input-field">
-                    <label for="debit">Debit (KES):</label>
+                    <label for=" debit">Debit (KES):</label>
                     <input type="number" id="debit" placeholder="Enter debit amount" required>
                 </div>
                 <div class="input-field">
@@ -133,7 +144,7 @@
                     <select id="payment-mode" required>
                         <option value="" disabled selected>Select Payment Mode</option>
                         <option value="M-Pesa">M-Pesa</option>
-                        <option value="Cheque">Cheque</ option>
+                        <option value="Cheque">Cheque</option>
                         <option value="Bank">Bank</option>
                     </select>
                 </div>
@@ -141,25 +152,38 @@
             </form>
 
             <div class="output" id="output-section" style="display: none;">
-                <h2> J B Schools</h2>
+                <h2> J B Schools Academy</h2>
                 <h3>Payment Details</h3>
                 <p><strong>Date Paid:</strong> <span id="output-date"></span></p>
                 <p><strong>Credit:</strong> KES <span id="output-credit"></span></p>
                 <p><strong>Debit:</strong> KES <span id="output-debit"></span></p>
                 <p><strong>Balance:</strong> KES <span id="output-balance"></span></p>
                 <p><strong>Mode of Payment:</strong> <span id="output-mode"></span></p>
+                <p><strong>Confirmation Message:</strong> <span id="confirmation-message"></span></p>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 J B Schools. All rights reserved.</p>
+        <p>&copy; 2025 J B Schools Academy. All rights reserved.</p>
     </footer>
 
     <script>
+        function generateRandomString(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+
         document.getElementById('financials-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
 
+            const name = document.getElementById('name').value;
+            const admissionNumber = document.getElementById('admission-number').value;
+            const phoneNumber = document.getElementById('phone-number').value;
             const datePaid = document.getElementById('date-paid').value;
             const credit = parseFloat(document.getElementById('credit').value) || 0;
             const debit = parseFloat(document.getElementById('debit').value) || 0;
@@ -168,13 +192,19 @@
             // Calculate balance
             const balance = credit - debit;
 
+            // Generate confirmation code
+            const confirmationCode = generateRandomString(9);
+
+            // Construct confirmation message
+            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${credit.toFixed(2)} has been deposited in favor of ${name} (Admin No: ${admissionNumber}). The new balance is ${balance.toFixed(2)}. Ensure you clear the balance by mid term. Nice moments!`;
+
             // Display output
-            
             document.getElementById('output-date').textContent = datePaid;
             document.getElementById('output-credit').textContent = credit.toFixed(2);
             document.getElementById('output-debit').textContent = debit.toFixed(2);
             document.getElementById('output-balance').textContent = balance.toFixed(2);
             document.getElementById('output-mode').textContent = paymentMode;
+            document.getElementById('confirmation-message').textContent = confirmationMessage;
 
             // Show the output section
             document.getElementById('output-section').style.display = 'block';
