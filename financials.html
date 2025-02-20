@@ -11,7 +11,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            height:100%;
+            height: 100%;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -46,10 +46,12 @@
         .nav a:hover {
             background-color: #0056b3;
         }
+
         .nav a.active {
-    background-color: #0056b3; /* Change background color */
-    color: white; /* Change text color */
-}
+            background-color: #0056b3; /* Change background color */
+            color: white; /* Change text color */
+        }
+
         .content {
             margin-left: 220px; /* Space for the navigation */
             padding: 20px;
@@ -103,7 +105,8 @@
         .output h3 {
             margin: 0 0 10px;
         }
-         footer {
+
+        footer {
             text-align: center;
             padding: 10px;
             background-color: #15763d;
@@ -113,8 +116,17 @@
             width: 100%;
             margin-top: auto;
         }
+
+        /* Print styles */
+        @media print {
+            .nav, footer {
+                display: none; /* Hide navigation and footer when printing */
+            }
+            .output {
+                border: none; /* Remove border for print */
+            }
+        }
     </style>
-    
 </head>
 <body>
     <div class="nav">
@@ -177,6 +189,7 @@
                 <p><strong>Balance:</strong> KES <span id="output-balance"></span></p>
                 <p><strong>Mode of Payment:</strong> <span id="output-mode"></span></p>
                 <p><strong>Confirmation Message:</strong> <span id="confirmation-message"></span></p>
+                <button onclick="printReceipt()" class="submit-button">Print Receipt</button>
             </div>
         </div>
     </div>
@@ -199,19 +212,6 @@
             return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        function numberToWords(num) {
-            const words = [
-                '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
-                'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
-                'Seventeen', 'Eighteen', 'Nineteen', 'Twenty', 'Thirty', 'Forty', 'Fifty',
-                'Sixty', 'Seventy', 'Eighty', 'Ninety'
-            ];
-            if (num < 20) return words[num];
-            if (num < 100) return words[Math.floor(num / 10) + 18] + (num % 10 ? ' ' + words[num % 10] : '');
-            if (num < 1000) return words[Math.floor(num / 100)] + ' Hundred' + (num % 100 ? ' and ' + numberToWords(num % 100) : '');
-            return 'Number too large';
-        }
-
         function getRandomTime(date) {
             const randomMinutes = Math.floor(Math.random() * 60); // Random minutes
             const randomHours = Math.floor(Math.random() * 24); // Random hours
@@ -219,6 +219,53 @@
             randomDate.setHours(randomDate.getHours() - randomHours);
             randomDate.setMinutes(randomDate.getMinutes() - randomMinutes);
             return randomDate;
+        }
+
+        function printReceipt() {
+            const name = document.getElementById('name').value;
+            const datePaid = document.getElementById('output-date').textContent;
+            const credit = document.getElementById('output-credit').textContent;
+            const debit = document.getElementById('output-debit').textContent;
+            const balance = document.getElementById('output-balance').textContent;
+            const paymentMode = document.getElementById('output-mode').textContent;
+
+            const printContent = `
+                <html>
+                <head>
+                    <title>Receipt</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; }
+                        table { width: 100%; border-collapse: collapse; }
+                        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+                    </style>
+                </head>
+                <body>
+                    <h2>Receipt</h2>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date Paid</th>
+                            <th>Credit (KES)</th>
+                            <th>Debit (KES)</th>
+                            <th>Balance (KES)</th>
+                        </tr>
+                        <tr>
+                            <td>${name}</td>
+                            <td>${datePaid}</td>
+                            <td>${credit}</td>
+                            <td>${debit}</td>
+                            <td>${balance}</td>
+                        </tr>
+                    </table>
+                </body>
+                </html>
+            `;
+
+            const newWindow = window.open('', '', 'width=600,height=400');
+            newWindow.document.write(printContent);
+            newWindow.document.close();
+            newWindow.print();
+            newWindow.close();
         }
 
         document.getElementById('financials-form').addEventListener('submit', function(event) {
@@ -247,14 +294,20 @@
 
             // Get random time backwards
             const randomDate = getRandomTime(datePaid);
-            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12 : false };
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false };
             const formattedRandomDate = randomDate.toLocaleString('en-US', options);
 
             // Construct confirmation message
             const creditFormatted = formatNumber(credit);
-            const creditInWords = numberToWords(credit);
             const balanceFormatted = formatNumber(balance);
-            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} (${creditInWords} Ksh) has been deposited in favor of ${name} (Admin No: ${admissionNumber}). The new balance is ${balanceFormatted} Ksh. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you clear the balance by mid term. Nice moments!`;
+            const nextTermFee = 67230;
+            let confirmationMessage;
+
+            if (balance <= 0) {
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
+            } else {
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
+            }
 
             // Display output
             document.getElementById('output-date').textContent = datePaid.toLocaleDateString();
