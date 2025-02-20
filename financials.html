@@ -224,18 +224,36 @@
         }
 
         function printReceipt() {
+            const name = document.getElementById('name').value;
+            const datePaid = document.getElementById('output-date').textContent;
+            const credit = document.getElementById('output-credit').textContent;
+            const debit = document.getElementById('output-debit').textContent;
+            const balance = document.getElementById('output-balance').textContent;
+            const paymentMode = document.getElementById('output-mode').textContent;
+
             const printContent = `
                 <html>
                 <head>
                     <title>Receipt</title>
                     <style>
                         body { font-family: Arial, sans-serif; }
-                        table { width: 100%; border-collapse: collapse; }
+                        .header { display: flex; align-items: center; }
+                        .header img { width: 100px; height: auto; margin-right: 20px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
                         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+                        .footer { margin-top: 40px; display: flex; justify-content: space-between; }
+                        .signature { border-top: 1px solid #000; width: 200px; text-align: center; margin-top: 20px; }
+                        .stamp { border: 2px dashed #000; padding: 10px; text-align: center; width: 150px; margin-top: 20px; }
+                        .stamp h3 { margin: 0; font-weight: bold; }
+                        .stamp p { margin: 5px 0; }
+                        .received { font-weight: bold; font-size: 16px; }
                     </style>
                 </head>
                 <body>
-                    <h2>Payment History</h2>
+                    <div class="header">
+                        <img src="icon.jpg" alt="School Logo"> <!-- Replace with your logo path -->
+                        <h2>Receipt</h2>
+                    </div>
                     <table>
                         <tr>
                             <th>Name</th>
@@ -244,16 +262,26 @@
                             <th>Debit (KES)</th>
                             <th>Balance (KES)</th>
                         </tr>
-                        ${paymentHistory.map(payment => `
-                            <tr>
-                                <td>${payment.name}</td>
-                                <td>${payment.datePaid}</td>
-                                <td>${payment.credit}</td>
-                                <td>${payment.debit}</td>
-                                <td>${payment.balance}</td>
-                            </tr>
-                        `).join('')}
+                        <tr>
+                            <td>${name}</td>
+                            <td>${datePaid}</td>
+                            <td>${credit}</td>
+                            <td>${debit}</td>
+                            <td>${balance}</td>
+                        </tr>
                     </table>
+                    <div class="footer">
+                        <div class="signature">
+                            <p>____________________</p>
+                            <p>Accountant's Signature</p>
+                        </div>
+                        <div class="stamp">
+                            <h3>J B Schools</h3>
+                            <p>Date: ${new Date().toLocaleDateString()}</p>
+                            <p class="received">RECEIVED</p>
+                            <p>Address: 123 School Lane, City, Country</p> <!-- Replace with actual address -->
+                        </div>
+                    </div>
                 </body>
                 </html>
             `;
@@ -271,7 +299,7 @@
             const name = document.getElementById('name').value;
             const admissionNumber = document.getElementById('admission-number').value;
             const phoneNumber = document.getElementById('phone-number').value;
-            const datePaid = new Date(document.getElementById('date-paid').value);
+            const date Paid = new Date(document.getElementById('date-paid').value);
             const credit = parseFloat(document.getElementById('credit').value) || 0;
             const debit = parseFloat(document.getElementById('debit').value) || 0;
             const paymentMode = document.getElementById('payment-mode').value;
@@ -301,14 +329,13 @@
             let confirmationMessage;
 
             if (balance <= 0) {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${formatNumber} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
             } else {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${formatNumber} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
             }
 
             // Store payment details in history
             paymentHistory.push({
-                confirmationCode: confirmationCode,
                 name: name,
                 datePaid: datePaid.toLocaleDateString(),
                 credit: creditFormatted,
