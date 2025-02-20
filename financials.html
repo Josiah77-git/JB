@@ -180,7 +180,7 @@
                 <button type="submit" class="submit-button">Submit</button>
             </form>
 
-            <div class="output" id="output-section" style="display: none;">
+            <div class="output" id=" output-section" style="display: none;">
                 <h2> J B Schools Academy</h2>
                 <h3>Payment Details</h3>
                 <p><strong>Date Paid:</strong> <span id="output-date"></span></p>
@@ -199,6 +199,8 @@
     </footer>
 
     <script>
+        const paymentHistory = []; // Array to store payment history
+
         function generateRandomString(length) {
             const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
             let result = '';
@@ -223,12 +225,6 @@
 
         function printReceipt() {
             const name = document.getElementById('name').value;
-            const datePaid = document.getElementById('output-date').textContent;
-            const credit = document.getElementById('output-credit').textContent;
-            const debit = document.getElementById('output-debit').textContent;
-            const balance = document.getElementById('output-balance').textContent;
-            const paymentMode = document.getElementById('output-mode').textContent;
-
             const printContent = `
                 <html>
                 <head>
@@ -249,13 +245,15 @@
                             <th>Debit (KES)</th>
                             <th>Balance (KES)</th>
                         </tr>
-                        <tr>
-                            <td>${name}</td>
-                            <td>${datePaid}</td>
-                            <td>${credit}</td>
-                            <td>${debit}</td>
-                            <td>${balance}</td>
-                        </tr>
+                        ${paymentHistory.map(payment => `
+                            <tr>
+                                <td>${payment.name}</td>
+                                <td>${payment.datePaid}</td>
+                                <td>${payment.credit}</td>
+                                <td>${payment.debit}</td>
+                                <td>${payment.balance}</td>
+                            </tr>
+                        `).join('')}
                     </table>
                 </body>
                 </html>
@@ -308,6 +306,15 @@
             } else {
                 confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
             }
+
+            // Store payment details in history
+            paymentHistory.push({
+                name: name,
+                datePaid: datePaid.toLocaleDateString(),
+                credit: creditFormatted,
+                debit: formatNumber(debit),
+                balance: balanceFormatted
+            });
 
             // Display output
             document.getElementById('output-date').textContent = datePaid.toLocaleDateString();
