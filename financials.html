@@ -101,6 +101,17 @@
     </style>
 </head>
 <body>
+    <div class="nav">
+        <h3>J B Writes</h3>
+        <a href="index.html">Dashboard</a>
+        <a href="about.html">About Us</a>
+        <a href="courses.html">Our Courses</a>
+        <a href="admission.html">Admission</a>
+        <a href="financials.html">Financials</a>
+        <a href="events.html">Events</a>
+        <a href="news.html">Latest News</a>
+        <a href="contactshtml.html">Contact Us</a>
+    </div>
        <div class="container">
         <div class="financials-container">
             <h2>Financials</h2>
@@ -130,6 +141,7 @@
             </form>
 
             <div class="output" id="output-section" style="display: none;">
+                <h2> J B Schools</h2>
                 <h3>Payment Details</h3>
                 <p><strong>Date Paid:</strong> <span id="output-date"></span></p>
                 <p><strong>Credit:</strong> KES <span id="output-credit"></span></p>
@@ -141,7 +153,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2023 Kabete National Polytechnic. All rights reserved.</p>
+        <p>&copy; 2025 J B Schools. All rights reserved.</p>
     </footer>
 
     <script>
@@ -157,6 +169,7 @@
             const balance = credit - debit;
 
             // Display output
+            
             document.getElementById('output-date').textContent = datePaid;
             document.getElementById('output-credit').textContent = credit.toFixed(2);
             document.getElementById('output-debit').textContent = debit.toFixed(2);
