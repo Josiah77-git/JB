@@ -11,9 +11,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            height:100%;
             background-color: #f4f4f4;
             margin: 0;
             display: flex;
+            flex-direction: column;
         }
 
         .header {
@@ -30,6 +32,7 @@
             padding: 20px;
             height: 100vh;
             position: fixed;
+            margin-left:0%;
         }
 
         .nav a {
@@ -50,6 +53,8 @@
             margin-left: 220px; /* Space for the navigation */
             padding: 20px;
             width: calc(100% - 220px);
+            max-width:800px;
+            flex: 1;
         }
 
         .admissions-container {
@@ -106,6 +111,7 @@
             position: relative;
             bottom: 0;
             width: 100%;
+            margin-top: auto;
         }
     </style>
 </head>
