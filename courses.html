@@ -8,11 +8,13 @@
     <link rel="icon" href="icon.jpg">
     <link rel="manifest" href="manifest.json">
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            height:100%;
             margin: 0;
             display: flex;
+            flex-direction: column;
         }
 
         .header {
@@ -49,6 +51,7 @@
             margin-left: 220px; /* Space for the navigation */
             padding: 20px;
             width: calc(100% - 220px);
+            flex: 1;
         }
 
         h2 {
@@ -84,6 +87,16 @@
             border-radius: 4px;
             margin-top: 10px;
         }
+        
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #15763d;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
     </style>
 </head>
 <body>
