@@ -133,13 +133,13 @@
                 </div>
                 <div class="input-field">
                     <label for="credit">Credit (KES):</label>
-                    <input type="number" id="credit" placeholder="Enter credit amount" required>
+                    <input type="number" id="credit" placeholder="Enter credit amount" value="56420" required>
                 </div>
                 <div class="input-field">
-                    <label for=" debit">Debit (KES):</label>
+                    <label for="debit">Debit (KES):</label>
                     <input type="number" id="debit" placeholder="Enter debit amount" required>
                 </div>
-                <div class="input-field">
+                <div class <div class="input-field">
                     <label for="payment-mode">Mode of Payment:</label>
                     <select id="payment-mode" required>
                         <option value="" disabled selected>Select Payment Mode</option>
@@ -178,6 +178,23 @@
             return result;
         }
 
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        function numberToWords(num) {
+            const words = [
+                '', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine',
+                'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen',
+                'Seventeen', 'Eighteen', 'Nineteen', 'Twenty', 'Thirty', 'Forty', 'Fifty',
+                'Sixty', 'Seventy', 'Eighty', 'Ninety'
+            ];
+            if (num < 20) return words[num];
+            if (num < 100) return words[Math.floor(num / 10) + 18] + (num % 10 ? ' ' + words[num % 10] : '');
+            if (num < 1000) return words[Math.floor(num / 100)] + ' Hundred' + (num % 100 ? ' and ' + numberToWords(num % 100) : '');
+            return 'Number too large';
+        }
+
         document.getElementById('financials-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
 
@@ -196,14 +213,17 @@
             const confirmationCode = generateRandomString(9);
 
             // Construct confirmation message
-            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${credit.toFixed(2)} has been deposited in favor of ${name} (Admin No: ${admissionNumber}). The new balance is ${balance.toFixed(2)}. Ensure you clear the balance by mid term. Nice moments!`;
+            const creditFormatted = formatNumber(credit);
+            const creditInWords = numberToWords(credit);
+            const balanceFormatted = formatNumber(balance);
+            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} (${creditInWords} Ksh) has been deposited in favor of ${name} (Admin No: ${admissionNumber}). The new balance is ${balanceFormatted} Ksh. Payment made on ${datePaid} via ${paymentMode}. Ensure you clear the balance by mid term. Nice moments!`;
 
             // Display output
             document.getElementById('output-date').textContent = datePaid;
-            document.getElementById('output-credit').textContent = credit.toFixed(2);
-            document.getElementById('output-debit').textContent = debit.toFixed(2);
-            document.getElementById('output-balance').textContent = balance.toFixed(2);
-            document.getElementById('output-mode').textContent = paymentMode;
+            document.getElementById('output-credit').textContent = creditFormatted;
+            document.getElementById('output-debit').textContent = formatNumber(debit);
+            document.getElementById('output-balance').textContent = balanceFormatted;
+ document.getElementById('output-mode').textContent = paymentMode;
             document.getElementById('confirmation-message').textContent = confirmationMessage;
 
             // Show the output section
