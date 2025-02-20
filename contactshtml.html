@@ -98,6 +98,43 @@
             width: 100%;
             margin-top: auto;
         }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px; /* Location of the box */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -109,7 +146,7 @@
         <a href="courses.html">Our Courses</a>
         <a href="admission.html">Admission</a>
         <a href="financials.html">Financials</a>
-        <a href="events.html">Events</a>
+        <a href="events.html"> Events</a>
         <a href="news.html">Latest News</a>
         <a href="contacts.html">Contact Us</a>
     </div>
@@ -117,16 +154,69 @@
     <div class="content">
         <h2>Let us know your feedback</h2>
         <div class="contact-form">
-            <form action="submit_contact.php" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
                 <button type="submit">Send Message</button>
             </form>
         </div>
     </div>
+
     <footer>
         <p>&copy; 2025 J B Schools Academy. All rights reserved.</p>
     </footer>
+
+    <!-- Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Confirm Your Details</h2>
+            <p><strong>Name:</strong> <span id="confirmName"></span></p>
+            <p><strong>Email:</strong> <span id="confirmEmail"></span></p>
+            <p><strong>Message:</strong> <span id="confirmMessage"></span></p>
+            <button id="editButton">Edit</button>
+            <button id="sendButton">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const modal = document.getElementById('confirmationModal');
+        const closeModal = document.getElementById('closeModal');
+        const confirmName = document.getElementById('confirmName');
+        const confirmEmail = document.getElementById('confirmEmail');
+        const confirmMessage = document.getElementById('confirmMessage');
+        const editButton = document.getElementById('editButton');
+        const sendButton = document.getElementById('sendButton');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            confirmName.textContent = document.getElementById('name').value;
+            confirmEmail.textContent = document.getElementById('email').value;
+            confirmMessage.textContent = document.getElementById('message').value;
+            modal.style.display = "block";
+        });
+
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        editButton.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        sendButton.onclick = function() {
+            alert("Your message has been sent successfully.");
+            modal.style.display = "none";
+            form.reset(); // Reset the form
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
