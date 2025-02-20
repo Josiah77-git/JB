@@ -216,7 +216,7 @@
             const creditFormatted = formatNumber(credit);
             const creditInWords = numberToWords(credit);
             const balanceFormatted = formatNumber(balance);
-            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} (${creditInWords} Ksh) has been deposited in favor of ${name} (Admin No: ${admissionNumber}). The new balance is ${balanceFormatted} Ksh. Payment made on ${datePaid} via ${paymentMode}. Ensure you clear the balance by mid term. Nice moments!`;
+            const confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} (${creditInWords} Ksh) has been deposited in favor of ${name} of Admin No: ${admissionNumber}. The new balance is ${balanceFormatted} Ksh. Payment made on ${datePaid} ${time} via ${paymentMode}. Ensure you clear the balance by mid term. Nice moments!`;
 
             // Display output
             document.getElementById('output-date').textContent = datePaid;
