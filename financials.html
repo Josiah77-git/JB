@@ -126,26 +126,6 @@
                 border: none; /* Remove border for print */
             }
         }
-
-        /* Payment history styles */
-        .history {
-            margin-top: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 4px;
-        }
-
-        .history table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        .history th, .history td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
     </style>
 </head>
 <body>
@@ -190,7 +170,7 @@
                 </div>
                 <div class="input-field">
                     <label for="payment-mode">Mode of Payment:</label>
- <select id="payment-mode" required>
+                    <select id="payment-mode" required>
                         <option value="" disabled selected>Select Payment Mode</option>
                         <option value="M-Pesa">M-Pesa</option>
                         <option value="Cheque">Cheque</option>
@@ -210,24 +190,6 @@
                 <p><strong>Mode of Payment:</strong> <span id="output-mode"></span></p>
                 <p><strong>Confirmation Message:</strong> <span id="confirmation-message"></span></p>
                 <button onclick="printReceipt()" class="submit-button">Print Receipt</button>
-            </div>
-
-            <div class="history" id="payment-history">
-                <h3>Payment History</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Date Paid</th>
-                            <th>Credit (KES)</th>
-                            <th>Debit (KES)</th>
-                            <th>Balance (KES)</th>
-                        </tr>
-                    </thead>
-                    <tbody id="history-body">
-                        <!-- Payment history entries will be appended here -->
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>
@@ -288,7 +250,7 @@
                     </style>
                 </head>
                 <body>
- <div class="header">
+                    <div class="header">
                         <img src="icon.jpg" alt="School Logo"> <!-- Replace with your logo path -->
                         <h2>Receipt</h2>
                     </div>
@@ -337,7 +299,7 @@
             const name = document.getElementById('name').value;
             const admissionNumber = document.getElementById('admission-number').value;
             const phoneNumber = document.getElementById('phone-number').value;
-            const datePaid = new Date(document.getElementById('date-paid').value);
+            const date Paid = new Date(document.getElementById('date-paid').value);
             const credit = parseFloat(document.getElementById('credit').value) || 0;
             const debit = parseFloat(document.getElementById('debit').value) || 0;
             const paymentMode = document.getElementById('payment-mode').value;
@@ -391,18 +353,6 @@
 
             // Show the output section
             document.getElementById('output-section').style.display = 'block';
-
-            // Update payment history table
-            const historyBody = document.getElementById('history-body');
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
- <td>${name}</td>
-                <td>${datePaid.toLocaleDateString()}</td>
-                <td>${creditFormatted}</td>
-                <td>${formatNumber(debit)}</td>
-                <td>${balanceFormatted}</td>
-            `;
-            historyBody.appendChild(newRow);
         });
     </script>
 </body>
