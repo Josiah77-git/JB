@@ -27,7 +27,7 @@
 
         .nav {
             width: 200px;
-            background-color: #15763d;
+            background-color: #4cbbb17;
             padding: 20px;
             height: 100vh; /* Full height */
             position: fixed; /* Fixed position */
@@ -83,7 +83,7 @@
         .submit-button {
             width: 100%;
             padding: 10px;
-            background-color: #28a745;
+            background-color: #4cbbb17;
             color: white;
             border: none;
             border-radius: 4px;
@@ -128,7 +128,7 @@
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #15763d;
+            background-color: #4cbbb17;
             color: white;
             position: relative;
             bottom: 0;
@@ -157,7 +157,7 @@
         <a href="financials.html" class="active">Financials</a>
         <a href="events.html">Events</a>
         <a href="news.html">Latest News</a>
-        <a href="contacts.html">Contact Us</a>
+        <a href="contactshtml.html">Contact Us</a>
     </div>
     <div class="content">
         <div class="financials-container">
@@ -191,8 +191,7 @@
                     <label for="payment-mode">Mode of Payment:</label>
                     <select id="payment-mode" required>
                         <option value="" disabled selected>Select Payment Mode</option>
-                        <option value="M-Pesa">M-Pesa</option>
-                        <option value="Cheque">Cheque</option>
+                        <option value="M-Pesa">Mobile Money</option>
                         <option value="Bank">Bank</option>
                     </select>
                 </div>
@@ -278,12 +277,12 @@
                         .header img { width: 100px; height: auto; margin-right: 20px; }
                         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
                         th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-                        .footer { margin-top: 40px; display: flex; justify-content: space-between; }
-                        .signature { border-top: 1px solid #000; width: 200px; text-align: center; margin-top: 20px; }
-                        .stamp { border: 2px dashed #000; padding: 10px; text-align: center; width: 150px; margin-top: 20px; }
+                        .footer { margin-top: auto; display: flex; justify-content: space-between; }
+                        .signature { border-top: 1px solid #000; width: 200px; text-align: center; margin-top: auto; }
+                        .stamp { border: 2px dashed #000; padding: 10px; text-align: center; width: 150px; margin-top: auto; }
                         .stamp h3 { margin: 0; font-weight: bold; }
                         .stamp p { margin: 5px 0; }
-                        .received { font-weight: bold; font-size: 16px; }
+                        .received { font-weight: bold; font-size: 24px; }
                     </style>
                 </head>
                 <body>
@@ -362,14 +361,15 @@
 
             // Construct confirmation message
             const creditFormatted = formatNumber(credit);
+            const debitFormatted = formatNumber(debit);
             const balanceFormatted = formatNumber(balance);
             const nextTermFee = 67230;
             let confirmationMessage;
 
             if (balance <= 0) {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${debitFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
             } else {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${debitFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
             }
 
             // Store payment details in history
