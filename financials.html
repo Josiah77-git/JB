@@ -106,6 +106,25 @@
             margin: 0 0 10px;
         }
 
+        .history {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .history table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .history th, .history td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
         footer {
             text-align: center;
             padding: 10px;
@@ -180,7 +199,7 @@
                 <button type="submit" class="submit-button">Submit</button>
             </form>
 
-            <div class="output" id=" output-section" style="display: none;">
+            <div class="output" id="output-section" style="display: none;">
                 <h2> J B Schools Academy</h2>
                 <h3>Payment Details</h3>
                 <p><strong>Date Paid:</strong> <span id="output-date"></span></p>
@@ -190,6 +209,24 @@
                 <p><strong>Mode of Payment:</strong> <span id="output-mode"></span></p>
                 <p><strong>Confirmation Message:</strong> <span id="confirmation-message"></span></p>
                 <button onclick="printReceipt()" class="submit-button">Print Receipt</button>
+            </div>
+
+            <div class="history" id="payment-history">
+                <h3>Payment History</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date Paid</th>
+                            <th>Credit (KES)</th>
+                            <th>Debit (KES)</th>
+                            <th>Balance (KES)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-body">
+                        <!-- Payment history entries will be appended here -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -211,7 +248,7 @@
         }
 
         function formatNumber(num) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            return num.toString().replace(/\ B(?=(\d{3})+(?!\d))/g, ",");
         }
 
         function getRandomTime(date) {
@@ -250,7 +287,7 @@
                     </style>
                 </head>
                 <body>
-                  <div class="Header">
+                  <div class="header">
                   <img src="icon.jpg" alt="School Logo">
                     <h2>Receipt</h2>
                     <table>
@@ -330,9 +367,9 @@
             let confirmationMessage;
 
             if (balance <= 0) {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${formatNumber} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh 0. Payment made on ${formattedRandomDate} via ${paymentMode}. Next term fee is Ksh ${nextTermFee}.`;
             } else {
-                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${formatNumber} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
+                confirmationMessage = `${confirmationCode}. Confirmed, Ksh ${creditFormatted} has been deposited in favor of ${name}. The new balance is Ksh ${balanceFormatted}. Payment made on ${formattedRandomDate} via ${paymentMode}. Ensure you pay by 20th March 2025.`;
             }
 
             // Store payment details in history
@@ -354,6 +391,18 @@
 
             // Show the output section
             document.getElementById('output-section').style.display = 'block';
+
+            // Update payment history table
+            const historyBody = document.getElementById('history-body');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${name}</td>
+                <td>${datePaid.toLocaleDateString()}</td>
+                <td>${creditFormatted}</td>
+                <td>${formatNumber(debit)}</td>
+                <td>${balanceFormatted}</td>
+            `;
+            historyBody.appendChild(newRow);
         });
     </script>
 </body>
