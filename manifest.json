@@ -21,7 +21,7 @@
     ],
     "theme_color": "#007bff",
     "background_color": "#ffffff",
-    "start_url": "./index.html",
+    "start_url": "./index.html/",
     "display": "standalone",
     "orientation": "portrait",
     "description": "Official website of J B Academy, providing information on courses, events, admissions and many more.",
